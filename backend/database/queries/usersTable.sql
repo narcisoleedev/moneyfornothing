@@ -1,0 +1,5 @@
+CREATE TABLE usersTable(
+    username VARCHAR(50) PRIMARY KEY UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
+
