@@ -12,7 +12,6 @@ const loginPost = async (req, res) => {
     if (modelResponse === null)
       return res.status("500").json({ msg: "postgres error" });
     else {
-      console.log(modelResponse);
       if (modelResponse.rows.length == 0)
         return res.status(401).json({ msg: "no users found" });
       bcrypt.compare(
@@ -26,7 +25,6 @@ const loginPost = async (req, res) => {
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: "1h" },
               );
-              console.log(token);
               return res.status(200).json({ token: token });
             } else {
               return res.status(401).json({ msg: "wrong password" });
@@ -37,7 +35,6 @@ const loginPost = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-  } finally {
   }
 };
 
