@@ -7,7 +7,7 @@ const userModel = require("../models/userModel.js");
 
 const loginPost = async (req, res) => {
   try {
-    const user = { username: req.body.username, password: req.body.password };
+    const user = { email: req.body.email, password: req.body.password };
     const modelResponse = await userModel.userModelLogin(user);
     if (modelResponse === null)
       return res.status("500").json({ msg: "postgres error" });

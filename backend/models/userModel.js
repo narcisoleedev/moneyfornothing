@@ -4,7 +4,7 @@ async function userModelLogin(user) {
   try {
     const client = await pool.connect();
     const response = await client.query(
-      `SELECT password FROM usersTable WHERE username = '${user.username}'`,
+      `SELECT password FROM usersTable WHERE email = '${user.email}'`,
     );
     client.release();
     return response;
@@ -17,7 +17,7 @@ async function userModelSignup(user) {
   try {
     const client = await pool.connect();
     const response = await client.query(
-      `INSERT INTO usersTable(username, password) VALUES ( '${user.username}' , '${user.password}' )`,
+      `INSERT INTO usersTable(email, firstname, lastname, password) VALUES ( '${user.email}' , '${user.firstname}', '${user.lastname}' , '${user.password}' )`,
     );
     client.release();
     return response;
