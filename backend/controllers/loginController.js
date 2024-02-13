@@ -21,7 +21,7 @@ const loginPost = async (req, res) => {
           if (!errCRY) {
             if (responseCRY) {
               const token = jwt.sign(
-                { user: user.username },
+                { email: user.email },
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: "1h" },
               );
