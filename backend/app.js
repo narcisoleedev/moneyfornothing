@@ -21,6 +21,10 @@ app.use("/login", loginRoute);
 
 app.use("/signup", signupRoute);
 
+const expensesRoute = require("./routes/expensesRoute.js");
+
+app.use("/expenses", authMiddleware, expensesRoute);
+
 app.listen(port, () => {
   console.log(`app running on port ${port}...`);
 });
