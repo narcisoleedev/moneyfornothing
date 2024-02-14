@@ -1,6 +1,6 @@
-const Express = require('express');
+const Express = require("express");
 const router = Express();
-const expensesPost = require('../controllers/expensesController.js')
+const expensesPost = require("../controllers/expensesController.js");
 
 router.route("/").post(expensesPost);
 

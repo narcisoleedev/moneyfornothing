@@ -10,10 +10,10 @@ const loginPost = async (req, res) => {
     const user = { email: req.body.email, password: req.body.password };
     const modelResponse = await userModel.userModelLogin(user);
     if (modelResponse === null)
-      return res.status("500").json({ msg: "postgres error" });
+      return res.status(500).json({ msg: "postgres error" });
     else {
       if (modelResponse.rows.length == 0)
-        return res.status(401).json({ msg: "no users found" });
+        return res.status(401).json({ msg: "user not found" });
       bcrypt.compare(
         user.password,
         modelResponse.rows[0].password,

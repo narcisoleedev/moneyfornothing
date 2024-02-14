@@ -1,4 +1,4 @@
-## Config files
+## Setting config files
 
 ### Prettier 
 
@@ -35,7 +35,3 @@ run
 ```
 npm run lint -- --quiet
 ```
-
-### References 
-
-[Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)

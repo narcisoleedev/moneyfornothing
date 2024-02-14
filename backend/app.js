@@ -28,9 +28,11 @@ const expensesRoute = require("./routes/expensesRoute.js");
 
 app.use("/expenses", authMiddleware, expensesRoute);
 
-https.createServer({
-  key: fs.readFileSync(__dirname+'/SSL/ssl.key'),
-  cert: fs.readFileSync(__dirname+'/SSL/m4n.crt')
-  },app).listen(port, () => {
-  console.log(`app running on port ${port}...`);
-  })
+https.createServer(
+    {
+      key: fs.readFileSync(__dirname + "/SSL/ssl.key"),
+      cert: fs.readFileSync(__dirname + "/SSL/m4n.crt"),
+    },app)
+  .listen(port, () => {
+    console.log(`app running on port ${port}...`);
+  });
