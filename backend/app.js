@@ -3,6 +3,9 @@ require("dotenv").config();
 const Express = require("express");
 const app = Express();
 
+const https = require("https");
+const fs = require("fs");
+
 const Cors = require("cors");
 app.use(Cors());
 
@@ -25,6 +28,9 @@ const expensesRoute = require("./routes/expensesRoute.js");
 
 app.use("/expenses", authMiddleware, expensesRoute);
 
-app.listen(port, () => {
+https.createServer({
+  key: fs.readFileSync(__dirname+'/SSL/ssl.key'),
+  cert: fs.readFileSync(__dirname+'/SSL/m4n.crt')
+  },app).listen(port, () => {
   console.log(`app running on port ${port}...`);
-});
+  })
