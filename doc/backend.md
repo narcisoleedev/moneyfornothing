@@ -68,6 +68,7 @@
 - 500:
 ```
 { msg: "postgres error" }
+```
 
 ## API Architecture 
 
