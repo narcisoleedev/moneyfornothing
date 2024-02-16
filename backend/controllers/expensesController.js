@@ -1,11 +1,11 @@
 const expensesModel = require("../models/expensesModel");
 
-const expansesGet = async(req, res)=>{
+const expensesGet = async(req, res)=>{
   try{
     const modelResponse = await expensesModel.expensesModelGet(req.user.email);
     if(modelResponse===null) return res.status(500).json({msg: 'postgres error'});
     else{
-      return res.status(200).json({userEmail: modelResponse});
+      return res.status(200).json({[req.user.email]: modelResponse});
     }
   }
   catch(err){
@@ -37,4 +37,4 @@ const expensesPost = async(req, res) => {
   }
 };
 
-module.exports = { expansesGet, expensesPost };
+module.exports = { expensesGet, expensesPost };
