@@ -7,7 +7,7 @@ const homeController = async (req, res) => {
     if (donutChartResponse === null) {
       return res.status(500).json({ msg: "postgres error" });
     } else {
-      return res.status(200).json(donutChartResponse);
+      return res.status(200).json({ donutchart: donutChartResponse });
     }
   } catch (err) {
     console.log(err);

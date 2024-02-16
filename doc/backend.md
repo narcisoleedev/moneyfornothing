@@ -96,6 +96,17 @@ openssl req -newkey rsa:4096 \
             -out example.crt \
             -keyout ./backend/SSL/ssl.key
 
+            or
+
+            openssl req -newkey rsa:4096 \
+            -x509 \
+            -sha256 \
+            -days 365 \
+            -nodes \
+            -out example.crt \
+            -keyout ./backend/SSL/ssl.key \
+            -config ./backend/SSL/ssl.conf
+
 #Generate certificate signing request
 openssl req -new -key ./backend/SSL/ssl.key -out ./backend/SSL/m4n.csr
 
