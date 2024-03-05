@@ -1,18 +1,18 @@
 const expensesModel = require("../models/expensesModel");
 
-const expansesGet = async(req, res)=>{
-  try{
+const expansesGet = async (req, res) => {
+  try {
     const modelResponse = await expensesModel.expensesModelGet(req.user.email);
-    if(modelResponse===null) return res.status(500).json({msg: 'postgres error'});
-    else{
-      return res.status(200).json({userEmail: modelResponse});
+    if (modelResponse === null)
+      return res.status(500).json({ msg: "postgres error" });
+    else {
+      return res.status(200).json({ userEmail: modelResponse });
     }
-  }
-  catch(err){
+  } catch (err) {
     console.log(err);
   }
-}
-const expensesPost = async(req, res) => {
+};
+const expensesPost = async (req, res) => {
   try {
     const expenses = {
       name: req.body.name,

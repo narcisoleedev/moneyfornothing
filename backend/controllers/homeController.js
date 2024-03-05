@@ -4,10 +4,16 @@ const homeController = async (req, res) => {
   try {
     console.log(1);
     const donutChartResponse = await homeModel.donutChart(req.user.email);
-    if (donutChartResponse === null) {
+    const averageExpensesResponse = await homeModel.averageExpenses(
+      req.user.email,
+    );
+    if ((donutChartResponse || averageExpensesResponse) === null) {
       return res.status(500).json({ msg: "postgres error" });
     } else {
-      return res.status(200).json({ donutchart: donutChartResponse });
+      return res.status(200).json({
+        donutchart: donutChartResponse,
+        averageExpenses: averageExpensesResponse,
+      });
     }
   } catch (err) {
     console.log(err);

@@ -32,6 +32,7 @@ const homeRoute = require("./routes/homeRoute.js");
 
 app.use("/home", authMiddleware, homeRoute);
 
+/*
 https
   .createServer(
     {
@@ -43,3 +44,6 @@ https
   .listen(port, () => {
     console.log(`app running on port ${port}...`);
   });
+*/
+
+app.listen(port);
