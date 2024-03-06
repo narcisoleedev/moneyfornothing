@@ -1,4 +1,5 @@
 require("dotenv").config();
+const credentials = require("./config/.credentials.development.json");
 
 const Express = require("express");
 const app = Express();
@@ -12,6 +13,9 @@ app.use(Cors());
 const bp = require("body-parser");
 app.use(bp.json());
 
+const cookieParser = require("cookie-parser");
+app.use(cookieParser(credentials.cookiesSecret));
+
 const authMiddleware = require("./middlewares/authMiddleware.js");
 
 const port = process.env.PORT || 8000;
@@ -19,6 +23,10 @@ const port = process.env.PORT || 8000;
 //Routes
 const loginRoute = require("./routes/loginRoute.js");
 const signupRoute = require("./routes/signupRoute.js");
+
+app.get('/', (req, res)=>{
+  res.redirect("/login")
+})
 
 app.use("/login", loginRoute);
 
@@ -28,11 +36,27 @@ const expensesRoute = require("./routes/expensesRoute.js");
 
 app.use("/expenses", authMiddleware, expensesRoute);
 
-https.createServer(
+const incomesRoute = require("./routes/incomesRoute.js");
+
+app.use("/incomes", authMiddleware, incomesRoute);
+
+
+const homeRoute = require("./routes/homeRoute.js");
+
+app.use("/home", authMiddleware, homeRoute);
+
+/*
+https
+  .createServer(
     {
       key: fs.readFileSync(__dirname + "/SSL/ssl.key"),
       cert: fs.readFileSync(__dirname + "/SSL/m4n.crt"),
-    },app)
+    },
+    app,
+  )
   .listen(port, () => {
     console.log(`app running on port ${port}...`);
   });
+*/
+
+app.listen(port);

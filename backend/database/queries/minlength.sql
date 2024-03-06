@@ -16,3 +16,9 @@ ADD CONSTRAINT expenseNamelen CHECK (LENGTH(expenseName) >= 1);
 ALTER TABLE expenses 
 ADD CONSTRAINT expenseTypelen CHECK (LENGTH(expenseType) >= 1);
 
+ALTER TABLE incomes 
+ADD CONSTRAINT incomeNamelen CHECK (LENGTH(incomeName) >= 1);
+
+ALTER TABLE incomes
+ADD CONSTRAINT incomeTypelen CHECK (LENGTH(incomeType) >= 1);
+

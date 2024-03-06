@@ -1,7 +1,8 @@
 const Express = require("express");
-const router = Express();
-const expensesPost = require("../controllers/expensesController.js");
+const router = Express.Router();
+const expensesController = require("../controllers/expensesController.js")
 
-router.route("/").post(expensesPost);
+router.route("/").get(expensesController.expensesGet);
+router.route("/").post(expensesController.expensesPost);
 
 module.exports = router;
