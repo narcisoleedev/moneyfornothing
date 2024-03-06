@@ -4,7 +4,8 @@ async function expensesModelGet(userEmail) {
   try {
     const client = await pool.connect();
     const response = await client.query(
-      `SELECT expenseName, expenseDescription, expenseType, expenseValue, expenseDate FROM expenses WHERE userEmail = '${userEmail}'`,
+      `SELECT expenseName, expenseDescription, expenseType, expenseValue, expenseDate FROM expenses WHERE userEmail = '${userEmail}'
+      ORDER BY expenseDate;`
     );
     client.release();
     const expenses = {

@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const userModel = require("../models/userModel.js");
 
-const loginPost = async (req, res) => {
+const loginPost = async(req, res) => {
   try {
     const user = { email: req.body.email, password: req.body.password };
     const modelResponse = await userModel.userModelLogin(user);
@@ -25,7 +25,14 @@ const loginPost = async (req, res) => {
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: "1h" },
               );
-              return res.status(202).json({ token: token });
+              res.cookie('jwt-cookie', token, {
+                signed: true,
+                path: ['/home', '/expenses', '/incomes'],
+                maxAge: 36000000,
+                //secure: true,
+                httpOnly: true
+              })
+              return res.status(200).json({ token: token });
             } else {
               return res.status(401).json({ msg: "wrong password" });
             }

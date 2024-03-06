@@ -2,7 +2,6 @@ const homeModel = require("../models/homeModel.js");
 
 const homeController = async (req, res) => {
   try {
-    console.log(1);
     const donutChartResponse = await homeModel.donutChart(req.user.email);
     const averageExpensesResponse = await homeModel.averageExpenses(
       req.user.email,
